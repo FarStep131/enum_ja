@@ -11,6 +11,8 @@ module Hello
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.i18n.default_locale = :ja
+
     # Log to STDOUT because Docker expects all processes to log here. You could
     # then collect logs using journald, syslog or forward them somewhere else.
     logger           = ActiveSupport::Logger.new(STDOUT)

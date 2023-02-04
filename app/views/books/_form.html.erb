@@ -1,0 +1,31 @@
+<div class='flex flex-wrap justify-center'>
+  <%= form_with model: book, class: "xl:w-8/12 w-10/12"  do |f| %>
+    <% if book.errors.any? %>
+      <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-5" role="alert">
+        <p class="font-bold">
+          <%= I18n.t("errors.messages.not_saved",
+                      count: book.errors.count,
+                      resource: book.class.model_name.human.downcase)
+          %>
+        </p>
+        <ul>
+          <% book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-6">
+      <%= f.label :title, class: "mb-2 block text-sm text-gray-600" %>
+      <%= f.text_field :title, class: "w-full rounded-md border border-gray-300 py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    <div class="mb-6">
+      <%= f.label :body, class: "mb-2 block text-sm text-gray-600" %>
+      <%= f.text_area :body, rows: "8", class: "w-full rounded-md border border-gray-300 py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    <div class="mb-6">
+      <%= f.select :status, Book.enum_options_for_select(:status), {}, {class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 appearance-none"} %>
+    </div>
+    <%= f.submit class: "inline-flex w-full items-center justify-center rounded-md bg-indigo-500 p-3 text-white duration-100 ease-in-out hover:bg-indigo-600 focus:outline-none cursor-pointer" %>
+  <% end %>
+</div>

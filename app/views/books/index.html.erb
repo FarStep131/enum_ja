@@ -1,0 +1,31 @@
+<div class="mb-10 text-center">
+  <span class="text-3xl font-bold">
+    Books
+  </span>
+</div>
+
+<div class='flex flex-wrap justify-center'>
+  <% @books.each do |book| %>
+    <div class="w-full max-w-sm rounded-lg xl:w-4/12 md:w-6/12">
+      <%= link_to book_path(book) do %>
+        <div class="px-8 pb-8">
+          <div class='flex-auto'>
+            <div class='text-blueGray-500 mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-3 text-center shadow-sm'></div>
+            <h6 class='mb-1 text-xl font-semibold'>
+              <%= book.title %>
+            </h6>
+            <p class='text-blueGray-500 mb-4 truncate hover:text-clip'>
+              <%= book.body %>
+            </p>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold p-2 rounded">
+              <%= book.human_attribute_enum(:status) %>
+              <%#= book.status %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
